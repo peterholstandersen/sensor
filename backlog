@@ -1,0 +1,44 @@
+Add sensor to repository
+
+Make two versions
+- sensor
+- temperature controller
+
+Measure current (72 mA)
+Measure awake time (7 seconds -- connect takes 5 seconds)
+Reporting every hour should give a battery life time > 2 years
+
+-----------------
+
+Java backend, jada-jada-jada, REST, Spring, Angular, Node.js, jeg skal gi' dig skal jeg
+
+BLE, ESP32s
+
+
+Upload to github
+
+Show which measurement is which (dymo 1 og 2).
+
+Manage log size (both temp.log and access.log and errors.log)
+
+Mute Serial
+
+report build id
+
+IP address -> host name
+
+Graph on web-page
+
+
+Humidity sensor
+---------------
+https://www.aliexpress.com/item/1Pcs-1-Wire-Digital-Temperature-Humidity-Sensor-Module/32788915249.html?spm=2114.01010208.3.48.rYSGjt&ws_ab_test=searchweb0_0,searchweb201602_3_10152_10065_10151_10068_5010013_10136_10137_10157_10060_10138_10155_10062_10156_437_10154_10056_10055_10054_10059_303_100031_10099_10103_10102_10096_10147_10052_10053_10142_10107_10050_10051_10171_5020014_10084_10083_10080_10082_10081_10110_519_10111_10112_10113_10114_10182_10185_10032_10078_10079_10077_10073_10123_142-10102,searchweb201603_1,ppcSwitch_5&btsid=c770b9a0-1892-4aeb-a265-51254a99c215&algo_expid=ce3fcb64-dc12-45b4-9cfe-42937a4e8f26-6&algo_pvid=ce3fcb64-dc12-45b4-9cfe-42937a4e8f26
+
+Battery
+-------
+One AA has around 2500 mAh
+
+Notes
+-----
+Power: https://openhomeautomation.net/esp8266-battery/
+http://www.espressif.com/sites/default/files/9b-esp8266-low_power_solutions_en_0.pdf
