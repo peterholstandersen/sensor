@@ -77,15 +77,15 @@ void loop_wifi() {
   Serial.print("connecting to ");
   Serial.println(host);
 
-  for (int i = 0; i < deviceCount; i++) {
-    // Use WiFiClient class to create TCP connections
-    WiFiClient client;
-    const int httpPort = 80;
-    if (!client.connect(host, httpPort)) {
-      Serial.println("connection failed");
-      return;
-    }
+  // Use WiFiClient class to create TCP connections
+  WiFiClient client;
+  const int httpPort = 80;
+  if (!client.connect(host, httpPort)) {
+    Serial.println("connection failed");
+    return;
+  }
 
+  for (int i = 0; i < deviceCount; i++) {
     digitalWrite(LED_PIN, LOW);
     delay(250);
     digitalWrite(LED_PIN, HIGH);
@@ -103,21 +103,13 @@ void loop_wifi() {
     while (client.available() == 0) {
       if (millis() - timeout > 5000) {
          Serial.println(">>> Client Timeout !");
-	       client.stop();
-	       return;
+	 client.stop();
+	 return;
       }
     }
-
-    /*
-    // Read all the lines of the reply from server and print them to Serial
-    while (client.available()) {
-      String line = client.readStringUntil('\r');
-      Serial.print(line);
-    }
-    Serial.println();
-    */
   }
   
   Serial.println("closing connection");
+  client.stop();
 }
 

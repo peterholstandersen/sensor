@@ -1,8 +1,10 @@
-Make two versions
-- sensor
-- temperature controller
+
+Tykkere ledning til relæ
 
 Modem sleep
+
+Upload target temperature also
+Read target temperature from server
 
 Measure current (72 mA)
 Measure awake time (7 seconds -- connect takes 5 seconds)

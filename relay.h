@@ -6,11 +6,11 @@ void setup_relay() {
 float get_actual_temperature() {
   float actual_temperature = 0.0;
 
+  // Just get the highest temperature
   for (int i = 0; i < deviceCount; i++) {
     if (temperatures[i] > actual_temperature)
       actual_temperature = temperatures[i];
   }
-
   return actual_temperature;
 }
 
@@ -56,7 +56,7 @@ void loop_relay() {
 
   digitalWrite(RELAY_PIN, desired_state);
 
-  // 30 seconds
+  // Not allowed to change the relay state for the next 30 seconds
   allowed_change_time = now + 30 * 1000;
 }
 
