@@ -9,7 +9,7 @@ void setup_one_wire() {
   deviceCount = sensors.getDeviceCount();
 
   deviceAddress = new DeviceAddress[deviceCount];
-  temperatures = new String[deviceCount];
+  temperatures = new float[deviceCount];
   deviceId = new String[deviceCount];
   
   for (uint8_t i = 0; i < deviceCount; i++) {
@@ -41,7 +41,7 @@ void loop_one_wire() {
 
     // Only keep most sensible readings
     if (-20.0 <= reading && reading <= 100.0) {
-      temperatures[i] = String(reading, 1);
+      temperatures[i] = reading;
       Serial.println(temperatures[i]);
     }
   }

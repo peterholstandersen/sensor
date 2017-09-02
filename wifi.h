@@ -52,7 +52,7 @@ void loop_wifi() {
       return;
     }
 
-    String url = url_template + "?id=" + deviceId[i] + "&temperature=" + temperatures[i];
+    String url = url_template + "?id=" + deviceId[i] + "&temperature=" + String(temperatures[i], 1);
 
     Serial.print("Requesting URL: ");
     Serial.println(url);

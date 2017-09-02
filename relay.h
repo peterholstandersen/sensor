@@ -3,7 +3,7 @@ void setup_relay() {
   digitalWrite(RELAY_PIN, LOW);
 }
 
-void loop_realy() {
+void loop_relay() {
   temperatures[0];
   temperatures[1];
 }

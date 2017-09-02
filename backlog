@@ -1,8 +1,8 @@
-Add sensor to repository
-
 Make two versions
 - sensor
 - temperature controller
+
+Modem sleep
 
 Measure current (72 mA)
 Measure awake time (7 seconds -- connect takes 5 seconds)
@@ -14,16 +14,11 @@ Java backend, jada-jada-jada, REST, Spring, Angular, Node.js, jeg skal gi' dig s
 
 BLE, ESP32s
 
-
-Upload to github
-
-Show which measurement is which (dymo 1 og 2).
+Make dymo 1 & 2 to IDs
 
 Manage log size (both temp.log and access.log and errors.log)
 
 Mute Serial
-
-report build id
 
 IP address -> host name
 
