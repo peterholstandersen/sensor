@@ -1,5 +1,5 @@
-const static long sleep = 10 * 1000 * 1000; // 10 sec -- while testing
-// const static unsigned long sleep = 3600UL * 1000UL * 1000UL;  // 1 hour
+// const static long sleep = 10 * 1000 * 1000; // 10 sec -- while testing
+const static unsigned long sleep = 3600UL * 1000UL * 1000UL;  // 1 hour
 
 void setup() {
 
@@ -34,8 +34,7 @@ void setup() {
   ESP.deepSleep(sleep, RF_CAL);
 }
 
-long next_tick = 0;
-
 void loop() {
   // Do nothing
 }
+

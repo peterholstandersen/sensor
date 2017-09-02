@@ -25,7 +25,4 @@ void loop() {
   loop_one_wire();
   loop_wifi();
   loop_relay();
-
-  // shutdown_wifi();
-  // ESP.deepSleep(sleep, RF_CAL);
 }

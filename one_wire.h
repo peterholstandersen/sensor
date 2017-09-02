@@ -1,3 +1,5 @@
+// Read temperatures once per second
+
 static OneWire oneWire(ONE_WIRE_PIN);
 static DallasTemperature sensors(&oneWire);
 static DeviceAddress *deviceAddress;
@@ -39,10 +41,14 @@ void loop_one_wire() {
   for (uint8_t i = 0; i < deviceCount; i++) {
     float reading = sensors.getTempC(deviceAddress[i]);
 
+    Serial.println(String(temperatures[i], 1));
+
     // Only keep most sensible readings
-    if (-20.0 <= reading && reading <= 100.0) {
+    if (-20.0 <= reading && reading <= 110.0) {
       temperatures[i] = reading;
-      Serial.println(temperatures[i]);
+    }
+    else {
+      Serial.println("Reading disregarded as an error");
     }
   }
   
@@ -52,4 +58,5 @@ void loop_one_wire() {
 
   sensors.requestTemperatures();
 }
+
 

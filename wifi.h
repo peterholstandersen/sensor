@@ -9,20 +9,49 @@ void setup_wifi() {
      network-issues with your other WiFi-devices on your WiFi-network. */
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
+}
+
+long wifi_retry = 0;
+
+// Connect to WiFi if not already connected
+bool connect_wifi(bool force) {
+
+  if (WiFi.status() == WL_CONNECTED)
+    return true;
+
+  // Not connected: check if it is time try again
+  long now = millis();
+  if (!force && wifi_retry != 0 && now < wifi_retry) {
+    Serial.println("Not time to reconnect yet");
+    return false;
+  }
 
   bool led_on = true;
-  while (WiFi.status() != WL_CONNECTED) {
+  long timeout = now + 20000;
+  while (WiFi.status() != WL_CONNECTED && millis() < timeout) {
     led_on = !led_on;
     digitalWrite(LED_PIN, led_on ?HIGH :LOW);
+    digitalWrite(LED_BUILTIN, led_on ?HIGH :LOW);
     delay(500);
     Serial.print(".");
   }
-  digitalWrite(LED_PIN, HIGH);
-
   Serial.println("");
-  Serial.println("WiFi connected");  
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+
+  if (WiFi.status() == WL_CONNECTED) {
+    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);
+    Serial.println("WiFi connected");  
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+    return true;
+  }
+  else {
+    Serial.println("Unable to connect to WiFi");
+    digitalWrite(LED_PIN, LOW);
+    digitalWrite(LED_BUILTIN, LOW);
+    wifi_retry = millis() + WIFI_RETRY_DELAY;
+    return false;
+  }
 }
 
 void shutdown_wifi() {
@@ -30,7 +59,7 @@ void shutdown_wifi() {
   WiFi.disconnect();  
 }
 
-static const long wifi_interval = 1000;
+static const long wifi_interval = WIFI_UPLOAD_INTERVAL;
 static long wifi_next;
 
 void loop_wifi() {
@@ -38,7 +67,12 @@ void loop_wifi() {
   if (now < wifi_next)
     return;
 
+  Serial.println("loop_wifi");
+  
   wifi_next = now + wifi_interval;
+
+  if (!connect_wifi(false))
+    return;
   
   Serial.print("connecting to ");
   Serial.println(host);
@@ -52,6 +86,10 @@ void loop_wifi() {
       return;
     }
 
+    digitalWrite(LED_PIN, LOW);
+    delay(250);
+    digitalWrite(LED_PIN, HIGH);
+    
     String url = url_template + "?id=" + deviceId[i] + "&temperature=" + String(temperatures[i], 1);
 
     Serial.print("Requesting URL: ");
