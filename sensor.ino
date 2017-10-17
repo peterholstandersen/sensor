@@ -17,12 +17,12 @@
 #define TEMPERATURE_PRECISION   12
 
 #define WIFI_RETRY_DELAY        (10*60*1000) // 10 minutes
-#define WIFI_UPLOAD_INTERVAL	(60*1000)    // 1 minute
-// #define WIFI_UPLOAD_INTERVAL	(10*1000)    // 10 seconds (for testing)
+// #define WIFI_UPLOAD_INTERVAL	(60*1000)    // 1 minute
+#define WIFI_UPLOAD_INTERVAL	(10*1000)    // 10 seconds (for testing)
 
-const char *ssid     = "ZyXEL_3BCC";
-const char *password = "9F4TAK3C4R333";
-const char *host     = "192.168.1.44";
+const char *ssid     = "CableBox-7A3D";
+const char *password = "farerdenbedste";
+const char *host     = "192.168.0.10";
 
 String url_template = "/cgi-bin/log_temperature.py";
 
@@ -36,5 +36,5 @@ String *deviceId;
 
 // Select one
 
-// #include "main_sensor.h"
-#include "main_relay.h"
+#include "main_sensor.h"
+// #include "main_relay.h"

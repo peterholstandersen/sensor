@@ -1,8 +1,10 @@
+#define SLEEP
+
 // const static long sleep = 10 * 1000 * 1000; // 10 sec -- while testing
 const static unsigned long sleep = 3600UL * 1000UL * 1000UL;  // 1 hour
 
-void setup() {
-
+void setup()
+{
   Serial.begin(115200);
   
   pinMode(LED_BUILTIN, OUTPUT);
@@ -22,6 +24,13 @@ void setup() {
   setup_one_wire();
   setup_wifi();
 
+#ifdef SLEEP
+  measure_and_sleep();
+#endif
+}
+
+void measure_and_sleep()
+{
   loop_one_wire();
   loop_wifi();
 
@@ -34,7 +43,12 @@ void setup() {
   ESP.deepSleep(sleep, RF_CAL);
 }
 
-void loop() {
-  // Do nothing
+
+void loop()
+{
+#ifndef SLEEP
+  loop_one_wire();
+  loop_wifi();
+#endif
 }
 

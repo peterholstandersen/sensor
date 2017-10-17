@@ -10,6 +10,8 @@ void setup_one_wire() {
   sensors.begin();
   deviceCount = sensors.getDeviceCount();
 
+  Serial.println("Found " + String(deviceCount) + " devices");
+  
   deviceAddress = new DeviceAddress[deviceCount];
   temperatures = new float[deviceCount];
   deviceId = new String[deviceCount];
